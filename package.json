@@ -1,0 +1,20 @@
+{
+  "name": "obso",
+  "author": "Lloyd Brookes <75pound@gmail.com>",
+  "version": "0.0.0",
+  "module": "emitter.js",
+  "description": "emitter",
+  "dependencies": {},
+  "devDependencies": {
+    "rollup": "^0.55.3",
+    "rollup-plugin-node-resolve": "^3.0.2",
+    "rollup-watch": "^4.3.1",
+    "test-runner": "^0.5.0",
+    "test-runner-counter": "^0.1.1"
+  },
+  "scripts": {
+    "test": "rollup -c dist/emitter.config.js && rollup -c dist/mixin.config.js && test-runner test/*.js",
+    "watch": "rollup -c dist/emitter.config.js -w; rollup -c dist/mixin.config.js -w"
+  },
+  "license": "MIT"
+}
