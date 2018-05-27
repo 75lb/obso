@@ -1,14 +1,12 @@
 const TestRunner = require('test-runner')
-const mixin = require('../dist/mixin')
+const Emitter = require('./')
 const Counter = require('test-runner-counter')
 
 const runner = new TestRunner()
 
-runner.test('mixin: on', function () {
+runner.test('on', function () {
   const counter = Counter.create(2)
-  const Observable = mixin(class {})
-  const emitter = new Observable()
-
+  const emitter = new Emitter()
   emitter.on('something', function () {
     counter.pass('good')
   })
@@ -17,11 +15,9 @@ runner.test('mixin: on', function () {
   return counter.promise
 })
 
-runner.test('mixin: addEventListener', function () {
+runner.test('addEventListener', function () {
   const counter = Counter.create(2)
-  const Observable = mixin(class {})
-  const emitter = new Observable()
-
+  const emitter = new Emitter()
   emitter.addEventListener('something', function () {
     counter.pass('good')
   })
@@ -30,12 +26,33 @@ runner.test('mixin: addEventListener', function () {
   return counter.promise
 })
 
+runner.test('once', function () {
+  const counter = Counter.create(1)
+  const emitter = new Emitter()
+  emitter.once('something', function () {
+    counter.pass('good')
+  })
+  emitter.emit('something')
+  emitter.emit('something')
+  return counter.promise
+})
+
+runner.test('once, as an option', function () {
+  const counter = Counter.create(1)
+  const emitter = new Emitter()
+  emitter.on('something', function () {
+    counter.pass('good')
+  }, { once: true })
+  emitter.emit('something')
+  emitter.emit('something')
+  return counter.promise
+})
+
 runner.test('propagate', function () {
   const counter1 = Counter.create(2)
   const counter2 = Counter.create(2)
-  const Observable = mixin(class {})
-  const emitter1 = new Observable()
-  const emitter2 = new Observable()
+  const emitter1 = new Emitter()
+  const emitter2 = new Emitter()
   emitter1.on('one', function () {
     counter1.pass('emitter1')
   })
@@ -48,3 +65,5 @@ runner.test('propagate', function () {
   emitter2.emit('one')
   return Promise.all([ counter1.promise, counter2.promise ])
 })
+
+runner.test('event on child bubbles up to parent')
