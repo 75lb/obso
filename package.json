@@ -1,12 +1,11 @@
 {
   "name": "obso",
   "author": "Lloyd Brookes <75pound@gmail.com>",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "repository": "https://github.com/75lb/obso",
-  "description": "Make an object observable",
+  "description": "emitter",
   "module": "emitter.mjs",
   "main": "dist/emitter.js",
-  "description": "emitter",
   "dependencies": {},
   "devDependencies": {
     "jsdoc-to-markdown": "^4.0.1",
