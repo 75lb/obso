@@ -2,7 +2,9 @@
   "name": "obso",
   "author": "Lloyd Brookes <75pound@gmail.com>",
   "version": "0.2.0",
-  "module": "emitter.js",
+  "repository": "https://github.com/75lb/obso",
+  "description": "Make an object observable",
+  "module": "emitter.mjs",
   "main": "dist/emitter.js",
   "description": "emitter",
   "dependencies": {},
@@ -16,7 +18,8 @@
   },
   "scripts": {
     "test": "rollup -c dist/emitter.config.js && test-runner test.js",
-    "watch": "rollup -c dist/emitter.config.js -w"
+    "watch": "rollup -c dist/emitter.config.js -w",
+    "docs": "jsdoc2md -c jsdoc.conf emitter.mjs > README.md"
   },
   "license": "MIT"
 }

@@ -1,7 +1,8 @@
 /**
- * @module emitter
+ * Make an object observable.
+ * @module obso
  * @example
- * import Emitter from './node_modules/emitter/emitter.js'
+ * import Emitter from './node_modules/obso/emitter.mjs'
  *
  * class Something extends Emitter {}
  * const something = new Something()
@@ -11,7 +12,7 @@
  */
 
 /**
- * @alias module:emitter
+ * @alias module:obso
  */
 class Emitter {
   /**

@@ -1,7 +1,7 @@
 import resolve from 'rollup-plugin-node-resolve'
 
 export default {
-  input: 'emitter.js',
+  input: 'emitter.mjs',
   output: {
     file: 'dist/emitter.js',
     format: 'umd',
