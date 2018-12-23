@@ -1,13 +1,14 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.emitter = factory());
-}(this, (function () { 'use strict';
+  (global = global || self, global.Emitter = factory());
+}(this, function () { 'use strict';
 
   /**
-   * @module emitter
+   * Make an object observable.
+   * @module obso
    * @example
-   * import Emitter from './node_modules/emitter/emitter.js'
+   * import Emitter from './node_modules/obso/emitter.mjs'
    *
    * class Something extends Emitter {}
    * const something = new Something()
@@ -17,7 +18,7 @@
    */
 
   /**
-   * @alias module:emitter
+   * @alias module:obso
    */
   class Emitter {
     /**
@@ -97,4 +98,4 @@
 
   return Emitter;
 
-})));
+}));

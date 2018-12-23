@@ -3,22 +3,22 @@
   "author": "Lloyd Brookes <75pound@gmail.com>",
   "version": "0.3.0",
   "repository": "https://github.com/75lb/obso",
-  "description": "emitter",
-  "module": "emitter.mjs",
-  "main": "dist/emitter.js",
+  "description": "obso",
+  "main": "dist/index.js",
+  "engines": {
+    "node": ">=6.0.0"
+  },
   "dependencies": {},
   "devDependencies": {
     "jsdoc-to-markdown": "^4.0.1",
-    "rollup": "^0.63.4",
-    "rollup-plugin-node-resolve": "^3.3.0",
-    "rollup-watch": "^4.3.1",
-    "test-runner": "^0.5.0",
+    "rollup": "^0.68.2",
+    "test-runner": "^0.5.1",
     "test-runner-counter": "^0.1.2"
   },
   "scripts": {
-    "test": "rollup -c dist/emitter.config.js && test-runner test.js",
-    "watch": "rollup -c dist/emitter.config.js -w",
-    "docs": "jsdoc2md -c jsdoc.conf emitter.mjs > README.md"
+    "test": "rollup -c dist/index.config.js && test-runner test.js",
+    "dist": "rollup -c dist/index.config.js -w",
+    "docs": "jsdoc2md -c jsdoc.conf -t README.hbs index.mjs > README.md"
   },
   "license": "MIT"
 }

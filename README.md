@@ -1,3 +1,9 @@
+[![view on npm](https://img.shields.io/npm/v/obso.svg)](https://www.npmjs.org/package/obso)
+[![npm module downloads](https://img.shields.io/npm/dt/obso.svg)](https://www.npmjs.org/package/obso)
+[![Build Status](https://travis-ci.org/75lb/obso.svg?branch=master)](https://travis-ci.org/75lb/obso)
+[![Dependency Status](https://david-dm.org/75lb/obso.svg)](https://david-dm.org/75lb/obso)
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
+
 <a name="module_obso"></a>
 
 ## obso
@@ -60,3 +66,7 @@ Remove an event listener.
 | eventName | <code>string</code> | the event name |
 | handler | <code>function</code> | the event handler |
 
+
+* * *
+
+&copy; 2018 Lloyd Brookes \<75pound@gmail.com\>. Documented by [jsdoc-to-markdown](https://github.com/jsdoc2md/jsdoc-to-markdown).
