@@ -4,6 +4,19 @@
 [![Dependency Status](https://david-dm.org/75lb/obso.svg)](https://david-dm.org/75lb/obso)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 
+## obso
+
+Make an object observable.
+
+```js
+import Emitter from './node_modules/obso/emitter.mjs'
+class Something extends Emitter {}
+const something = new Something()
+something.on('load', () => {
+  console.log('load event fired.')
+})
+```
+
 {{>main}}
 
 * * *

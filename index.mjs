@@ -1,14 +1,5 @@
 /**
- * Make an object observable.
  * @module obso
- * @example
- * import Emitter from './node_modules/obso/emitter.mjs'
- *
- * class Something extends Emitter {}
- * const something = new Something()
- * something.on('load', () => {
- *   console.log('load event fired.')
- * })
  */
 
 /**
@@ -42,8 +33,10 @@ class Emitter {
 
    /**
     * Register an event listener.
-    * @param eventName {string} - the event name to watch
-    * @param handler {function} - the event handler
+    * @param {string} eventName - the event name to watch
+    * @param {function} handler - the event handler
+    * @param {object} [options]
+    * @param {boolean} [options.once]
     */
   on (eventName, handler, options) {
     createListenersArray(this)
@@ -68,16 +61,29 @@ class Emitter {
     if (index > -1) this._listeners.splice(index, 1)
   }
 
+  /**
+   * Once.
+   * @param {string} eventName - the event name to watch
+   * @param {function} handler - the event handler
+   */
   once (eventName, handler) {
+    /* TODO: the once option is browser-only */
     this.on(eventName, handler, { once: true })
   }
 
+  /**
+   * Propagate.
+   * @param {string} eventName - the event name to propagate
+   * @param {object} from - the emitter to propagate from
+   */
   propagate (eventName, from) {
     from.on(eventName, (...args) => this.emit(eventName, ...args))
   }
 }
 
-/* alias */
+/**
+ * Alias for `on`.
+ */
 Emitter.prototype.addEventListener = Emitter.prototype.on
 
 function createListenersArray (target) {
