@@ -20,5 +20,9 @@
     "dist": "rollup -c dist/index.config.js -w",
     "docs": "jsdoc2md -c jsdoc.conf -t README.hbs index.mjs > README.md"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "files": [
+    "index.mjs",
+    "dist/index.js"
+  ]
 }
