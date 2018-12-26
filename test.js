@@ -142,3 +142,25 @@ runner.test('this', function () {
   })
   emitter.emit('one')
 })
+
+runner.test('nested composite, bubbling', function () {
+  const counts = []
+  const root = new Emitter()
+  const one = new Emitter()
+  one.parent = root
+  const two = new Emitter()
+  two.parent = one
+
+  root.on('pass', (name) => {
+    if (counts.length === 0) {
+      a.strictEqual(name, 'one')
+      counts.push(1)
+    } else {
+      a.strictEqual(name, 'two')
+      counts.push(2)
+    }
+  })
+  one.emit('pass', 'one')
+  two.emit('pass', 'two')
+  a.deepStrictEqual(counts, [ 1, 2 ])
+})
