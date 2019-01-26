@@ -14,7 +14,7 @@
   class Emitter {
     /**
      * Emit an event.
-     * @param {string} [eventName] - the event name to emit.
+     * @param {string} eventName - the event name to emit.
      * @param ...args {*} - args to pass to the event handler
      */
     emit (eventName, ...args) {
