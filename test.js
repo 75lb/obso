@@ -56,6 +56,22 @@ runner.test('on: handle all events', function () {
   return counter.promise
 })
 
+runner.test('on: validate args 1', function () {
+  const emitter = new Emitter()
+  a.throws(
+    () => emitter.on('break'),
+    /handler function required/
+  )
+})
+
+runner.test('on: validate args 2', function () {
+  const emitter = new Emitter()
+  a.throws(
+    () => emitter.on('break', 'break'),
+    /handler arg must be a function/
+  )
+})
+
 runner.test('addEventListener', function () {
   const counter = Counter.create(2)
   const emitter = new Emitter()

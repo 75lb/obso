@@ -25,7 +25,7 @@ something.on('load', () => {
     * [Emitter](#exp_module_obso--Emitter) ⏏
         * [.addEventListener](#module_obso--Emitter+addEventListener)
         * [.emit(eventName)](#module_obso--Emitter+emit)
-        * [.on(eventName, handler, [options])](#module_obso--Emitter+on)
+        * [.on([eventName], handler, [options])](#module_obso--Emitter+on)
         * [.removeEventListener(eventName, handler)](#module_obso--Emitter+removeEventListener)
         * [.once(eventName, handler)](#module_obso--Emitter+once)
         * [.propagate(eventName, from)](#module_obso--Emitter+propagate)
@@ -49,22 +49,22 @@ Emit an event.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| eventName | <code>string</code> | the event name to emit |
+| eventName | <code>string</code> | the event name to emit. |
 | ...args | <code>\*</code> | args to pass to the event handler |
 
 <a name="module_obso--Emitter+on"></a>
 
-#### emitter.on(eventName, handler, [options])
+#### emitter.on([eventName], handler, [options])
 Register an event listener.
 
 **Kind**: instance method of [<code>Emitter</code>](#exp_module_obso--Emitter)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| eventName | <code>string</code> | the event name to watch |
-| handler | <code>function</code> | the event handler |
+| [eventName] | <code>string</code> | The event name to watch. Omitting the name will catch all events. |
+| handler | <code>function</code> | The function to be called when `eventName` is emitted. Invocated with `this` set to `emitter`. |
 | [options] | <code>object</code> |  |
-| [options.once] | <code>boolean</code> |  |
+| [options.once] | <code>boolean</code> | If `true`, the handler will be invoked once then removed. |
 
 <a name="module_obso--Emitter+removeEventListener"></a>
 
