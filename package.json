@@ -6,18 +6,17 @@
   "description": "obso",
   "main": "dist/index.js",
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=8"
   },
   "dependencies": {},
   "devDependencies": {
-    "jsdoc-to-markdown": "^4.0.1",
-    "rollup": "^0.68.2",
-    "test-runner": "^0.5.1",
-    "test-runner-counter": "^0.1.2"
+    "jsdoc-to-markdown": "^5.0.1",
+    "rollup": "^1.20.3",
+    "test-runner": "^0.6.0"
   },
   "scripts": {
-    "test": "rollup -c dist/index.config.js && test-runner test.js",
-    "dist": "rollup -c dist/index.config.js -w",
+    "test": "npm run dist && test-runner test.js",
+    "dist": "rollup -f umd -n Emitter -o dist/index.js index.mjs",
     "docs": "jsdoc2md -c jsdoc.conf -t README.hbs index.mjs > README.md"
   },
   "license": "MIT",

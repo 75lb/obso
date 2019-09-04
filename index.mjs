@@ -114,7 +114,7 @@ class Emitter {
   }
 
   /**
-   * Propagate.
+   * Propagate events from the supplied emitter to this emitter.
    * @param {string} eventName - the event name to propagate
    * @param {object} from - the emitter to propagate from
    */

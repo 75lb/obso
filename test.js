@@ -1,62 +1,61 @@
-const TestRunner = require('test-runner')
+const Tom = require('test-runner').Tom
 const Emitter = require('./')
-const Counter = require('test-runner-counter')
 const a = require('assert')
 
-const runner = new TestRunner()
+const tom = module.exports = new Tom('test')
 
-runner.test('on: multiple args', function () {
-  const counter = Counter.create(1)
+tom.test('on: multiple args', function () {
+  const actuals = []
   const emitter = new Emitter()
   emitter.on('something', function (x, y, z) {
-    counter.pass()
+    actuals.push('something')
     a.strictEqual(x, 1)
     a.strictEqual(y, 2)
     a.strictEqual(z, 3)
   })
   emitter.emit('something', 1, 2, 3)
-  return counter.promise
+  a.deepStrictEqual(actuals, ['something'])
 })
 
-runner.test('on', function () {
-  const counter = Counter.create(2)
+tom.test('on', function () {
+  const actuals = []
   const emitter = new Emitter()
   emitter.on('something', function () {
-    counter.pass('good')
+    actuals.push('something')
   })
   emitter.emit('something')
   emitter.emit('something')
-  return counter.promise
+  a.deepStrictEqual(actuals, ['something', 'something'])
 })
 
-runner.test('on: multiple events', function () {
-  const counter = Counter.create(3)
+tom.test('on: multiple events', function () {
+  const actuals = []
   const emitter = new Emitter()
   emitter.on('one', function () {
-    counter.pass('good')
+    actuals.push('one')
   })
   emitter.on('two', function () {
-    counter.pass('good')
+    actuals.push('two')
   })
   emitter.emit('one')
   emitter.emit('two')
   emitter.emit('two')
-  return counter.promise
+  a.deepStrictEqual(actuals, ['one', 'two', 'two'])
 })
 
-runner.test('on: handle all events', function () {
-  const counter = Counter.create(3)
+tom.test('on: handle all events', function () {
+  const actuals = []
   const emitter = new Emitter()
   emitter.on(function () {
-    counter.pass('good')
+    actuals.push('event')
   })
   emitter.emit('one')
   emitter.emit('two')
   emitter.emit('two')
-  return counter.promise
+  a.deepStrictEqual(actuals, ['event', 'event', 'event'])
 })
 
-runner.test('on: validate args 1', function () {
+tom.test('on: validate args 1', function () {
   const emitter = new Emitter()
   a.throws(
     () => emitter.on('break'),
@@ -64,7 +63,7 @@ runner.test('on: validate args 1', function () {
   )
 })
 
-runner.test('on: validate args 2', function () {
+tom.test('on: validate args 2', function () {
   const emitter = new Emitter()
   a.throws(
     () => emitter.on('break', 'break'),
@@ -72,59 +71,58 @@ runner.test('on: validate args 2', function () {
   )
 })
 
-runner.test('addEventListener', function () {
-  const counter = Counter.create(2)
+tom.test('addEventListener', function () {
+  const actuals = []
   const emitter = new Emitter()
   emitter.addEventListener('something', function () {
-    counter.pass('good')
+    actuals.push('something')
   })
   emitter.emit('something')
   emitter.emit('something')
-  return counter.promise
+  a.deepStrictEqual(actuals, ['something', 'something'])
 })
 
-runner.test('once', function () {
-  const counter = Counter.create(1)
+tom.test('once', function () {
+  const actuals = []
   const emitter = new Emitter()
   emitter.once('something', function () {
-    counter.pass('good')
+    actuals.push('something')
   })
   emitter.emit('something')
   emitter.emit('something')
-  return counter.promise
+  a.deepStrictEqual(actuals, ['something'])
 })
 
-runner.test('once, as an option', function () {
-  const counter = Counter.create(1)
+tom.test('once, as an option', function () {
+  const actuals = []
   const emitter = new Emitter()
   emitter.on('something', function () {
-    counter.pass('good')
+    actuals.push('something')
   }, { once: true })
   emitter.emit('something')
   emitter.emit('something')
-  return counter.promise
+  a.deepStrictEqual(actuals, ['something'])
 })
 
-runner.test('propagate', function () {
-  const counter1 = Counter.create(2)
-  const counter2 = Counter.create(2)
+tom.test('propagate', function () {
+  const actuals = []
   const emitter1 = new Emitter()
   const emitter2 = new Emitter()
   emitter1.on('one', function () {
-    counter1.pass('emitter1')
+    actuals.push('one')
   })
   emitter2.on('one', function () {
-    counter2.pass('emitter2')
+    actuals.push('one2')
   })
   emitter1.emit('one')
   emitter2.propagate('one', emitter1)
   emitter1.emit('one')
   emitter2.emit('one')
-  return Promise.all([ counter1.promise, counter2.promise ])
+  a.deepStrictEqual(actuals, ['one', 'one', 'one2', 'one2'])
 })
 
-runner.test('event on child bubbles up to parent', function () {
-  const counter = Counter.create(3)
+tom.test('event on child bubbles up to parent', function () {
+  const actuals = []
   const parent = new Emitter()
   const child = new Emitter()
   child.parent = parent
@@ -132,26 +130,26 @@ runner.test('event on child bubbles up to parent', function () {
     a.strictEqual(this, parent)
     a.strictEqual(x, 1)
     a.strictEqual(y, 2)
-    counter.pass()
+    actuals.push('parent')
   })
   parent.on('child', function (x, y) {
     a.strictEqual(this, child)
     a.strictEqual(x, 3)
     a.strictEqual(y, 4)
-    counter.pass()
+    actuals.push('child')
   })
   child.on('child', function (x, y) {
     a.strictEqual(this, child)
     a.strictEqual(x, 3)
     a.strictEqual(y, 4)
-    counter.pass()
+    actuals.push('child2')
   })
   parent.emit('parent', 1, 2)
   child.emit('child', 3, 4)
-  return counter.promise
+  a.deepStrictEqual(actuals, ['parent', 'child2', 'child'])
 })
 
-runner.test('this', function () {
+tom.test('this', function () {
   const emitter = new Emitter()
   emitter.on('one', function () {
     a.strictEqual(this, emitter)
@@ -159,8 +157,8 @@ runner.test('this', function () {
   emitter.emit('one')
 })
 
-runner.test('nested composite, bubbling', function () {
-  const counts = []
+tom.test('nested composite, bubbling', function () {
+  const actuals = []
   const root = new Emitter()
   const one = new Emitter()
   one.parent = root
@@ -168,15 +166,15 @@ runner.test('nested composite, bubbling', function () {
   two.parent = one
 
   root.on('pass', (name) => {
-    if (counts.length === 0) {
+    if (actuals.length === 0) {
       a.strictEqual(name, 'one')
-      counts.push(1)
+      actuals.push(1)
     } else {
       a.strictEqual(name, 'two')
-      counts.push(2)
+      actuals.push(2)
     }
   })
   one.emit('pass', 'one')
   two.emit('pass', 'two')
-  a.deepStrictEqual(counts, [ 1, 2 ])
+  a.deepStrictEqual(actuals, [ 1, 2 ])
 })
