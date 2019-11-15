@@ -5,14 +5,15 @@
   "repository": "https://github.com/75lb/obso",
   "description": "obso",
   "main": "dist/index.js",
+  "module": "index.mjs",
   "engines": {
     "node": ">=8"
   },
   "dependencies": {},
   "devDependencies": {
-    "jsdoc-to-markdown": "^5.0.1",
-    "rollup": "^1.20.3",
-    "test-runner": "^0.6.0"
+    "jsdoc-to-markdown": "^5.0.2",
+    "rollup": "^1.27.0",
+    "test-runner": "^0.7.6"
   },
   "scripts": {
     "test": "npm run dist && test-runner test.js",
