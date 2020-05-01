@@ -1,10 +1,10 @@
-[![view on npm](https://img.shields.io/npm/v/obso.svg)](https://www.npmjs.org/package/obso)
-[![npm module downloads](https://img.shields.io/npm/dt/obso.svg)](https://www.npmjs.org/package/obso)
+[![view on npm](https://badgen.net/npm/v/obso)](https://www.npmjs.org/package/obso)
+[![npm module downloads](https://badgen.net/npm/dt/obso)](https://www.npmjs.org/package/obso)
 [![Build Status](https://travis-ci.org/75lb/obso.svg?branch=master)](https://travis-ci.org/75lb/obso)
 [![Dependency Status](https://badgen.net/david/dep/75lb/obso)](https://david-dm.org/75lb/obso)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 
-## obso
+# obso
 
 Make an object observable.
 
@@ -28,7 +28,6 @@ something.on('load', () => {
         * [.on([eventName], handler, [options])](#module_obso--Emitter+on)
         * [.removeEventListener(eventName, handler)](#module_obso--Emitter+removeEventListener)
         * [.once(eventName, handler)](#module_obso--Emitter+once)
-        * [.propagate(eventName, from)](#module_obso--Emitter+propagate)
 
 <a name="exp_module_obso--Emitter"></a>
 
@@ -90,19 +89,7 @@ Once.
 | eventName | <code>string</code> | the event name to watch |
 | handler | <code>function</code> | the event handler |
 
-<a name="module_obso--Emitter+propagate"></a>
-
-#### emitter.propagate(eventName, from)
-Propagate events from the supplied emitter to this emitter.
-
-**Kind**: instance method of [<code>Emitter</code>](#exp_module_obso--Emitter)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| eventName | <code>string</code> | the event name to propagate |
-| from | <code>object</code> | the emitter to propagate from |
-
 
 * * *
 
-&copy; 2018-19 Lloyd Brookes \<75pound@gmail.com\>. Documented by [jsdoc-to-markdown](https://github.com/jsdoc2md/jsdoc-to-markdown).
+&copy; 2018-20 Lloyd Brookes \<75pound@gmail.com\>. Documented by [jsdoc-to-markdown](https://github.com/jsdoc2md/jsdoc-to-markdown).

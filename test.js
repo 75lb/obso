@@ -104,23 +104,6 @@ tom.test('once, as an option', function () {
   a.deepStrictEqual(actuals, ['something'])
 })
 
-tom.test('propagate', function () {
-  const actuals = []
-  const emitter1 = new Emitter()
-  const emitter2 = new Emitter()
-  emitter1.on('one', function () {
-    actuals.push('one')
-  })
-  emitter2.on('one', function () {
-    actuals.push('one2')
-  })
-  emitter1.emit('one')
-  emitter2.propagate('one', emitter1)
-  emitter1.emit('one')
-  emitter2.emit('one')
-  a.deepStrictEqual(actuals, ['one', 'one', 'one2', 'one2'])
-})
-
 tom.test('event on child bubbles up to parent', function () {
   const actuals = []
   const parent = new Emitter()
