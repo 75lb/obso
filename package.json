@@ -7,16 +7,15 @@
   "main": "dist/index.js",
   "module": "index.mjs",
   "engines": {
-    "node": ">=8"
+    "node": ">=14"
   },
-  "dependencies": {},
   "devDependencies": {
-    "jsdoc-to-markdown": "^5.0.3",
-    "rollup": "^2.7.6",
-    "test-runner": "^0.8.13"
+    "jsdoc-to-markdown": "^7.0.0",
+    "rollup": "^2.42.1",
+    "test-runner": "^0.8.14"
   },
   "scripts": {
-    "test": "npm run dist && test-runner test.js",
+    "test": "npm run dist && test-runner test.mjs",
     "dist": "rollup -f umd -n Emitter -o dist/index.js index.mjs",
     "docs": "jsdoc2md -c jsdoc.conf -t README.hbs index.mjs > README.md"
   },

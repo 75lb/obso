@@ -1,8 +1,9 @@
-const Tom = require('test-runner').Tom
-const Emitter = require('./')
-const a = require('assert')
+import TestRunner from 'test-runner'
+import Emitter from './index.mjs'
+import assert from 'assert'
+const a = assert.strict
 
-const tom = module.exports = new Tom('test')
+const tom = new TestRunner.Tom()
 
 tom.test('on: multiple args', function () {
   const actuals = []
@@ -161,3 +162,5 @@ tom.test('nested composite, bubbling', function () {
   two.emit('pass', 'two')
   a.deepStrictEqual(actuals, [ 1, 2 ])
 })
+
+export default tom

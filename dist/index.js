@@ -1,13 +1,12 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global = global || self, global.Emitter = factory());
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Emitter = factory());
 }(this, (function () { 'use strict';
 
   /**
    * @module obso
    */
-
   const _listeners = new WeakMap();
 
   /**
